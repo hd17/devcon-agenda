@@ -1,9 +1,9 @@
 package com.senacor.hd17.devcon.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * @author Andri Bremm
@@ -13,13 +13,13 @@ public class Talk {
     private int id;
     private String name;
     private Speaker speaker;
-    private LocalDateTime time;
+    private ZonedDateTime startTime;
+    private ZonedDateTime endTime;
 
-    public Talk(int id, String name, Speaker speaker, LocalDateTime time) {
+    public Talk(int id, String name, Speaker speaker) {
         this.id = id;
         this.name = name;
         this.speaker = speaker;
-        this.time = time;
     }
 
     public int getId() {
@@ -46,12 +46,21 @@ public class Talk {
         this.speaker = speaker;
     }
 
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    public LocalDateTime getTime() {
-        return time;
+    @JsonSerialize(using = ZonedDateTimeSerializer.class)
+    public ZonedDateTime getStartTime() {
+        return startTime;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setStartTime(ZonedDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    @JsonSerialize(using = ZonedDateTimeSerializer.class)
+    public ZonedDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(ZonedDateTime endTime) {
+        this.endTime = endTime;
     }
 }
