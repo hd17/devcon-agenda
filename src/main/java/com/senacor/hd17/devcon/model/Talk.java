@@ -16,6 +16,10 @@ public class Talk {
     private ZonedDateTime startTime;
     private ZonedDateTime endTime;
 
+    //standard constructor
+    public Talk() {
+    }
+
     public Talk(int id, String name, Speaker speaker) {
         this.id = id;
         this.name = name;
