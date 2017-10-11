@@ -1,8 +1,9 @@
 package com.senacor.hd17.devcon.agenda;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 /**
  * @author Andri Bremm
@@ -35,6 +36,7 @@ public class Talk {
         this.speaker = speaker;
     }
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     public LocalDateTime getTime() {
         return time;
     }
