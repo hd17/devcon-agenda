@@ -1,4 +1,4 @@
-package com.senacor.hd17.devcon.agenda;
+package com.senacor.hd17.devcon.model;
 
 /**
  * @author Andri Bremm

@@ -1,4 +1,4 @@
-package com.senacor.hd17.devcon.agenda;
+package com.senacor.hd17.devcon.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
@@ -10,14 +10,24 @@ import java.time.LocalDateTime;
  */
 public class Talk {
 
+    private int id;
     private String name;
     private Speaker speaker;
     private LocalDateTime time;
 
-    public Talk(String name, Speaker speaker, LocalDateTime time) {
+    public Talk(int id, String name, Speaker speaker, LocalDateTime time) {
+        this.id = id;
         this.name = name;
         this.speaker = speaker;
         this.time = time;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -1,6 +1,7 @@
-package com.senacor.hd17.devcon.agenda;
+package com.senacor.hd17.devcon.api;
 
-import org.springframework.stereotype.Controller;
+import com.senacor.hd17.devcon.model.Agenda;
+import com.senacor.hd17.devcon.services.TalksService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +14,16 @@ import java.time.LocalDateTime;
 @RestController
 public class AgendaController {
 
+    private TalksService talksService;
+
+    public AgendaController(TalksService talksService) {
+        this.talksService = talksService;
+    }
+
     @RequestMapping(value = "/agenda", method = RequestMethod.GET)
     public Agenda agenda(){
         Agenda agenda = new Agenda();
-        agenda.add(new Talk("Test 1", new Speaker("Hans"), LocalDateTime.parse("2017-10-11T15:00:30")));
-        agenda.add(new Talk("AWS", new Speaker("Herbert"), LocalDateTime.parse("2017-10-12T15:05:30")));
+        agenda.setTalks(talksService.fetchTalks());
         return agenda;
     }
 }
