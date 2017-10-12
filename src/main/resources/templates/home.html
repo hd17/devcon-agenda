@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}" th:lang="${lang}">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<h1>
+    <span th:text="#{welcome.message}" />
+</h1>
+
+<h2>
+    <span th:text="#{msg.agenda}" />
+</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Talk</th>
+            <th>Speaker</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tr data-th-each="talk : ${talks}">
+        <td data-th-text="${talk.name}">...</td>
+        <td data-th-text="${talk.speaker.name}">...</td>
+        <td data-th-text="${{talk.startTime}}">...</td>
+    </tr>
+</table>
+
+</body>
+</html>
