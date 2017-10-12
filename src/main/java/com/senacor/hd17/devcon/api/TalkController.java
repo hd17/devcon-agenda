@@ -24,7 +24,7 @@ public class TalkController {
         return talksService.fetchTalks();
     }
 
-    @RequestMapping(value = "/talks", method = RequestMethod.PUT, produces = { "application/json" }, consumes = { "application/json" })
+    @RequestMapping(value = "/talks", method = RequestMethod.POST, produces = { "application/json" }, consumes = { "application/json" })
     public List addTalk(@RequestBody Talk json) throws JsonProcessingException {
         return talksService.addTalk(json);
     }
