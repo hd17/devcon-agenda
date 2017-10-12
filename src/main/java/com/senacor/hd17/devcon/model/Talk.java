@@ -3,35 +3,33 @@ package com.senacor.hd17.devcon.model;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
 
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 /**
  * @author Andri Bremm
  */
+@Entity
 public class Talk {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String name;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Speaker speaker;
     private ZonedDateTime startTime;
     private ZonedDateTime endTime;
 
-    //standard constructor
-    public Talk() {
+    Talk() {
+        this.name = null;
+        this.speaker = null;
+        this.startTime = null;
+        this.endTime = null;
     }
 
-    public Talk(int id, String name, Speaker speaker) {
-        this.id = id;
-        this.name = name;
-        this.speaker = speaker;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

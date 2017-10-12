@@ -1,24 +1,32 @@
 package com.senacor.hd17.devcon.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * @author Andri Bremm
  */
+
+@Entity
 public class Speaker {
 
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    //standard constructor
-    public Speaker(){}
+    private String speakerName;
 
-    public Speaker(String name) {
-        this.name = name;
+    Speaker() {
+        this.speakerName = null;
     }
 
-    public String getName() {
-        return name;
+    public String getSpeakerName() {
+        return this.speakerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSpeakerName(String speakerName) {
+        this.speakerName = speakerName;
     }
 }
