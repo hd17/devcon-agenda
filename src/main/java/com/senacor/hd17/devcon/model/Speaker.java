@@ -16,17 +16,17 @@ public class Speaker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String speakerName;
+    private String name;
 
-    Speaker() {
-        this.speakerName = null;
+    public Speaker() {
+        this.name = null;
     }
 
-    public String getSpeakerName() {
-        return this.speakerName;
+    public String getName() {
+        return this.name;
     }
 
-    public void setSpeakerName(String speakerName) {
-        this.speakerName = speakerName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

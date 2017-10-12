@@ -1,7 +1,6 @@
 package com.senacor.hd17.devcon;
 
 import com.senacor.hd17.devcon.frontend.formatter.ZonedDateTimeFormatter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Description;
 import org.springframework.context.support.ResourceBundleMessageSource;
