@@ -1,6 +1,7 @@
 package com.senacor.hd17.devcon.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Andri Bremm

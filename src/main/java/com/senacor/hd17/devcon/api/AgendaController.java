@@ -56,7 +56,7 @@ public class AgendaController {
     }
 
     @RequestMapping(value = "/agenda/generate", method = RequestMethod.POST)
-    public void agenda(@RequestParam(name = "size", required = false) Integer size) {
+    public void agenda(@RequestParam(value = "size", required = false) Integer size) {
         if (size == null || size <= 0) {
             size = 10;
         } else if (size > 10000) {
