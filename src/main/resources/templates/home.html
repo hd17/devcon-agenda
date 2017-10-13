@@ -2,21 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org"
       th:with="lang=${#locale.language}" th:lang="${lang}">
 <head>
-    <title>Home</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <title>DevCon Agenda</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 </head>
 
 <body>
 <div class="container-fluid">
     <h1>
-        <span th:text="#{welcome.message}" />
+        <span th:text="#{welcome.message}"/>
     </h1>
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link active" href="/">
-                <span th:text="#{msg.agenda}" />
+                <span th:text="#{msg.agenda}"/>
             </a>
         </li>
         <li class="nav-item">
@@ -34,37 +38,26 @@
                     <th>Speaker</th>
                 </tr>
                 </thead>
-                <tr scope="row" data-th-each="talk : ${talks}">
+                <tr scope="row" th:attr="data-id='talk-' + ${talk.id}" data-th-each="talk : ${talks}">
                     <td data-th-text="${{talk.startTime}}">...</td>
                     <td data-th-text="${talk.name}">...</td>
                     <td data-th-text="${talk.speaker.name}">...</td>
+                    <td><a th:attr="onclick='deleteTalk(' + ${talk.id} + ')'">X</a></td>
                 </tr>
             </table>
         </div>
     </div>
 
-
 </div>
 
 <script language="javascript">
-    function generateTalks() {
-        var size = document.getElementById("numOfTalks").value;
+    function deleteTalk(id) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/agenda/generate?size=" + size, false);
-        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.open("DELETE", "/talks/" + id, false);
         xhttp.send();
-        //var response = JSON.parse(xhttp.responseText);
-        return false;
+        $("tr[data-id='talk-" + id + "']").remove();
     }
 </script>
 
-<script language="javascript">
-    function deleteTalks() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "/agenda", false);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
-    }
-</script>
 </body>
 </html>
