@@ -31,5 +31,35 @@
     </tr>
 </table>
 
+<form>
+    <label>Number of Talks:</label>
+    <input id="numOfTalks" type="text" name="size" value="10" />
+    <button onclick="generateTalks()">Generate Talks</button>
+</form>
+
+<form>
+    <button onclick="deleteTalks()">Delete all talks</button>
+</form>
+
+<script language="javascript">
+    function generateTalks() {
+        var size = document.getElementById("numOfTalks").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/agenda/generate?size=" + size, false);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        //var response = JSON.parse(xhttp.responseText);
+        return false;
+    }
+</script>
+
+<script language="javascript">
+    function deleteTalks() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "/agenda", false);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+    }
+</script>
 </body>
 </html>
