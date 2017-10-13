@@ -21,7 +21,7 @@ public class Talk {
     private ZonedDateTime startTime;
     private ZonedDateTime endTime;
 
-    Talk() {
+    public Talk() {
         this.name = null;
         this.speaker = null;
         this.startTime = null;
