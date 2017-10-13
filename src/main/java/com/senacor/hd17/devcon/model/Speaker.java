@@ -1,15 +1,13 @@
 package com.senacor.hd17.devcon.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author Andri Bremm
  */
 
 @Entity
+@Table(name = "speakers")
 public class Speaker {
 
     @Id

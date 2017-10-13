@@ -10,6 +10,7 @@ import java.time.ZonedDateTime;
  * @author Andri Bremm
  */
 @Entity
+@Table(name = "talks")
 public class Talk {
 
     @Id
