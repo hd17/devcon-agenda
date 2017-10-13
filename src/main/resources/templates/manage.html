@@ -5,6 +5,12 @@
     <title>Home</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <style>
+        .panel {
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,35 +21,47 @@
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" href="/">
+            <a class="nav-link" href="/">
                 <span th:text="#{msg.agenda}" />
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="/manage">Manage</a>
         </li>
     </ul>
 
     <div class="row">
-        <div class="col">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Talk</th>
-                    <th>Speaker</th>
-                </tr>
-                </thead>
-                <tr scope="row" data-th-each="talk : ${talks}">
-                    <td data-th-text="${{talk.startTime}}">...</td>
-                    <td data-th-text="${talk.name}">...</td>
-                    <td data-th-text="${talk.speaker.name}">...</td>
-                </tr>
-            </table>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5>HAL Browser</h5>
+                    <a href="/browser/index.html">Open HAL Browser <br />(Spring Data REST)</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5>Add some random talks</h5>
+                    <form>
+                        <label>Talks</label>
+                        <input id="numOfTalks" type="text" name="size" value="10" />
+                        <button onclick="generateTalks()">Generate</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5>Clean Up</h5>
+                    <form>
+                        <button onclick="deleteTalks()">Delete all talks</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-
 </div>
 
 <script language="javascript">
@@ -53,7 +71,6 @@
         xhttp.open("POST", "/agenda/generate?size=" + size, false);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
-        //var response = JSON.parse(xhttp.responseText);
         return false;
     }
 </script>
